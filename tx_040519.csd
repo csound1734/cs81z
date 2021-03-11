@@ -1,11 +1,11 @@
 <CsoundSynthesizer>
 <CsOptions>
--o123890123.wav -d
+-o123890123.wav -Ma -+rtmidi=virtual --midi-key=4 --midi-velocity=5
 </CsOptions>
 <CsInstruments>
 
 sr = 55937.5
-ksmps = 1
+ksmps = 64
 nchnls = 1
 0dbfs = 1
 
@@ -134,7 +134,7 @@ opcode TX_HP, a, a
 endop
 
 
-instr 1   ; TABLE CONSTRUCTOR
+instr 17   ; TABLE CONSTRUCTOR
 kndx init 0
 if kndx = 4096 kgoto End
 ; TABLES W1 - W4 
@@ -174,7 +174,7 @@ xout aCar * kEnv * iVelSen
 endop
 
 
-instr 4 ; MASTER
+instr 1 ; MASTER
 kALG[][] init 13, 10  ; ALGORITHMIC MATRIX CONNECTIONS
 kALG fillarray 1,0,0,1,0,1,0, 0,0,0,
 												1,0,0,1,1,0,0, 0,0,0,
@@ -261,9 +261,10 @@ endin
 <CsScore>
 #include "KVStab_190119.tx" ; keyboard velocity sensivity table
 
-i1 0 0.1 ; TABLE CONSTRUCTOR INSTR
-
-i4 1 10 57  61
+i17 0 0.1 ; TABLE CONSTRUCTOR INSTR
+f 0 z
+/
+i4 1 10 57  127
 ;i4 + .  36  89
 ;i4 + .  48  90
 ;i4 + .  60  . 
@@ -271,6 +272,7 @@ i4 1 10 57  61
 ;i4 + .  84  .
 ;i4 + .  96  .
 ;i4 + .  108 .
+*/
 e
 </CsScore>
 </CsoundSynthesizer>
